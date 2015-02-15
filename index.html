@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html
+	id="ng-app"
+	ng-app="player"
+
+	xmlns:ng="http://angularjs.org">
+<head>
+	<meta
+		http-equiv="X-UA-Compatible" 
+		content="IE=Edge"> 
+	<meta 
+		charset="UTF-8">
+	<title>Player</title>
+	<link
+		rel="stylesheet"
+		type="text/css" 
+		href="styles/player.css">
+</head>
+<body>
+
+	<div 
+		class="player">
+
+		<div 
+			class="player-button player-play-button"
+			ng-click="playerCtrl.playPauseToggle()"
+			ng-disabled="!playerCtrl.hasTrack()"
+			ng-class="{ 'player-play': !playerCtrl.isPlaying() || !playerCtrl.hasTrack(), 'player-pause': playerCtrl.isPlaying() && playerCtrl.hasTrack()  }">
+		</div>
+
+		<div 
+			class="player-track">
+		</div>
+
+		<div 
+			class="player-button player-mute"
+			ng-click="playerCtrl.muteUnmuteToggle()"
+			ng-class="{ 'player-muted': playerCtrl.isMuted(), 'player-unmuted': !playerCtrl.isMuted() }">
+		</div>
+
+	</div>
+
+	<script 
+		src="scripts/angular/angular.js">
+	</script>
+	<script
+		src="scripts/player/player-module.js">
+	</script>
+	<script
+		src="scripts/player/directives/player-directive.js">
+	</script>
+	<script
+		src="scripts/player/directives/player-track-directive.js">
+	</script>
+
+	<!-- темплейты здесь чтобы не было ругательств на Cross Domain Origin для file:// -->
+
+	<script 
+		type="text/ng-template"
+		id="templates/player-tpl.html">
+		<div>
+			<audio 
+				src="{{playerCtrl.getTrackPath()}}"
+				type="{{playerCtrl.getTrackType()}}"
+				id="player-audio">
+			</audio>
+			<div 
+				ng-transclude>
+			</div>
+		</div>
+	</script>
+	
+	<script 
+		type="text/ng-template"
+		id="templates/player-track-tpl.html">
+
+		<div
+				ng-show="playerCtrl.hasTrack()"
+				class="player-track-info">
+
+				<span 
+					class="noselect" 
+					ng-bind="track._position | timeMin">
+				</span>
+				<span 
+					class="noselect" 
+					ng-bind="track._name | name">
+				</span>
+				<span
+					class="noselect" 
+					ng-bind="track._length | timeMin | brackets">
+				</span>
+
+			</div>
+			
+			<input 
+				ng-disabled="!playerCtrl.hasTrack()"
+				type="range"
+				min="00.00"
+				step="any"
+				value="00.00"/>
+		
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+	"strict": true,
+	"unused": true,
+	"laxcomma": true,
+
+	"strict": true,
+
+	"globals": {
+		"angular": true
+	}
+}

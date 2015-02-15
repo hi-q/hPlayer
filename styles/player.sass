@@ -1,0 +1,148 @@
+
+$white: #FFF
+$dark: #777
+$light: #DDD
+
+$borderSize: 0.12em
+
+*
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+
+html
+	font: normal 12px/12px Arial
+
+input
+	font-size: 1em
+
+body
+	font-size: 1em
+
+body, html
+	margin: 0
+	padding: 0.25em
+
+$playerHeight: 4em
+
+.player
+	padding: 0
+	border: 0.099em solid $dark
+	background: $light
+	display: inline-block
+
+.player-button
+	width: 4em
+	height: $playerHeight
+	display: inline-block
+
+.player-button[disabled],
+.player-track input[type=range][disabled]
+	opacity: 0.3
+
+.player-play
+	background: transparent url(../images/play.png) no-repeat
+
+.player-pause 
+	background: transparent url(../images/pause.png) no-repeat
+
+.player-muted 
+	background: transparent url(../images/muted.png) no-repeat
+
+.player-unmuted 
+	background: transparent url(../images/unmuted.png) no-repeat
+
+.player-track-info
+	position: absolute
+	top: 50%
+	height: 1em
+	margin: -0.35em 1em 0 1em
+	pointer-events: none
+
+=slider
+	border: 0
+	border-radius: 0	
+	padding: 0
+	margin: 0
+	display: block
+	cursor: pointer
+	height: $playerHeight + 0.2
+
+=slider-track
+	background: $light
+	+slider
+
+=slider-thumb
+	+slider
+	background-color: $dark
+	border-right: $borderSize solid $dark
+	width: 0
+
+.player-track 
+	display: inline-block
+	min-width: 25em
+	margin: 0
+	padding: 0
+	position: relative
+	height: 100%
+	border-left: $borderSize solid $dark
+	border-right: $borderSize solid $dark
+
+	input[type=range]
+		width: 100%
+		height: $playerHeight
+		display: inline-block
+		margin: 0
+		margin-top: $borderSize
+		padding: 0
+		background: $light
+		color: transparent
+
+		&:focus
+			outline: none
+
+	input[type=range]
+		-webkit-appearance: none
+
+	input[type=range]
+		-moz-appearance: none
+
+	input[type=range]
+		&::-webkit-slider-runnable-track
+			-webkit-appearance: none
+			+slider-track
+	 
+		&::-moz-range-track
+			-moz-appearance: none
+			+slider-track
+
+		&::-ms-track
+			+slider-track
+
+		&::-webkit-slider-thumb
+			-webkit-appearance: none
+			+slider-thumb
+
+		&::-moz-range-thumb
+			-moz-appearance: none
+			+slider-thumb
+
+		&::-ms-thumb
+			+slider-thumb
+
+		&::-ms-fill-lower
+			+slider
+			background: $light
+
+			&:active, &:hover
+				background: $light
+
+		&::-ms-fill-upper
+			+slider
+			background: $light
+
+			&:active, &:hover
+				background: $light
+
+		&::-ms-tooltip
+			display: none
