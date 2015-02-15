@@ -59,6 +59,11 @@ angular.module('player').directive('player', [
 						playPauseDefer.notify(!isPlaying);
 					};
 
+					playerCtrl.pause = function () {
+						player.pause();
+						playPauseDefer.notify(false);
+					};
+
 					playerCtrl.whenPlayPauseToggled = function () {
 						return playPauseDefer.promise;
 					};

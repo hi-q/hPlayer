@@ -41,8 +41,8 @@ angular.module('player').directive('playerTrack', [
 
 				function onRangePositionChange() {
 					var newPosition = range.value;
-					updatePosition(newPosition);
 					audioPlayer.currentTime = newPosition;
+					updatePosition(newPosition);
 				}
 
 				function updatePosition(newPosition) {
@@ -58,12 +58,12 @@ angular.module('player').directive('playerTrack', [
 
 					if (scrolledToTheEnd) {
 						newPosition = 0;
-						playerCtrl.playPauseToggle();
+						playerCtrl.pause();
 					}
 
+					range.value = newPosition;
 					$timeout(function notifyAngularUpdatePosition() {
 						currentTrack.updatePosition(newPosition);
-						range.value = newPosition;
 					});	
 				}
 			}
